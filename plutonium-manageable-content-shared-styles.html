@@ -2,32 +2,19 @@
 <dom-module id="plutonium-manageable-content-shared-styles">
     <template>
         <style>
-            .red { color: red; }
             
-            
-            /*Main header user icon*/
-            .avatar-circle {
-                display: inline-block;
-                height: 32px;
-                width: 32px;
-                border-radius: 50%;
-                background: #ddd;
-                line-height: 32px;
-                font-size: 15px;
-                color: #555;
-                text-align: center;
+            paper-dialog.plutonium.widget paper-toolbar {
+                margin-top: 0px;
             }
-            /*User photo in user info*/
-            .circle {
-                display: inline-block;
-                height: 64px;
-                width: 64px;
-                border-radius: 50%;
-                background: #ddd;
-                line-height: 64px;
-                font-size: 30px;
-                color: #555;
-                text-align: center;
+
+            paper-dialog.plutonium.widget form {
+                position: relative;
+            }
+
+            paper-dialog.plutonium.widget form paper-fab {
+                position: absolute;
+                top: -50px;
+                right: -30px;
             }
         </style>
     </template>
