@@ -1,0 +1,170 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../app-storage/app-network-status-behavior.html">
+<link rel="import" href="../iron-image/iron-image.html">
+<link rel="import" href="../paper-badge/paper-badge.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-item/paper-icon-item.html">
+<link rel="import" href="../paper-menu/paper-menu.html">
+<link rel="import" href="../paper-menu-button/paper-menu-button.html">
+<link rel="import" href="plutonium-shared-styles.html">
+<dom-module id="plutonium-toolbar">
+    <template>
+        <style include="plutonium-shared-styles">
+            :host {
+                @apply(--layout-horizontal);
+                @apply(--layout-center);
+                background-color: var(--paper-purple-500);
+                color: var(--paper-purple-50);
+                padding: 6px 8px;
+                --paper-icon-button-disabled: {
+                    color: var(--paper-purple-50);
+                };
+            }
+
+            h1 {
+                font-size: 14px;
+                flex-grow: 1;
+                margin: 9px 0;
+            }
+
+            iron-icon {
+                margin-right: 0.5em;
+            }
+
+            @media (min-width: 640px) {
+                iron-icon,
+                paper-icon-button {
+                    margin-right: 1.5em;
+                }
+
+                iron-icon:first-child {
+                    margin-left: 1em;
+                }
+            }
+        </style>
+        <iron-icon icon="bookmark"></iron-icon>
+
+        <h1>[[appName]]</h1>
+
+        <paper-menu-button 
+            id="avatarMenu"
+            vertical-align="top"
+            horizontal-align="right">
+            <iron-image id="avatar" class="avatar-circle dropdown-trigger" sizing="cover" src="[[user.photoURL]]"></iron-image>
+
+            <paper-menu class="dropdown-content" selectable="paper-item">
+                <plutonium-session-info
+                    user="[[user]]">
+                </plutonium-session-info>
+                <paper-item class="session-action">Share</paper-item>
+                <paper-item class="session-action">Settings</paper-item>
+                <paper-item class="session-action">Help</paper-item>
+                <paper-icon-item 
+                    class="session-action"
+                    on-tap="lock">
+                    <iron-icon 
+                        icon="[[computeLockIcon(signedIn)]]"
+                        disabled="[[!signedIn]]"
+                        item-icon></iron-icon>
+                    <label>Logout</label>
+                </paper-icon-item>
+            </paper-menu>
+        </paper-menu-button>
+
+        <paper-badge icon="[[computeOnlineIcon(online)]]" for="avatar" label="online" class="blue">
+        </paper-badge>
+    </template>
+    <script>
+        /**
+         * `<plutonium-toolbar>` is a component for main application header.
+         *
+         * @hero path/to/image
+         * 
+         * In typical use, just slap some `<plutonium-toolbar>` at the top of your body header:
+         *
+         *     <body>
+         *       <plutonium-toolbar user="[[user]]" app-name="Test title" signed-in="[[signedIn]]" on-sign-out="signOut"></plutonium-toolbar>
+         *     </body>
+         * 
+         * @demo demo/index-toolbar.html  Sample toolbar demo!   
+         */
+        Polymer({
+            is: 'plutonium-toolbar',
+            properties: {
+                /** 
+                 * Online indicator. 
+                 */
+                online: {
+                    type: Boolean,
+                    notify: true,
+                    value: false
+                },
+                /** 
+                 * Session indicator. 
+                 */
+                signedIn: {
+                    type: Boolean,
+                    notify: true,
+                    value: false
+                },
+                /**
+                 * Application name.
+                 */
+                appName: {
+                    type: String,
+                    notify: true
+                },
+                /**
+                 * User object.
+                 */
+                user: {
+                    type: Object,
+                    notify: true
+                }
+            },
+            /**
+             * Fired when user log out.
+             *
+             * @event sign-out
+             */
+
+            /**
+             * Compute lock icon.
+             *
+             * @param {boolean} Sign-in/out indicator.
+             * @return {string} Icon name.
+             */
+            computeLockIcon: function (signedIn) {
+                return signedIn ? 'lock-open' : 'lock';
+            },
+            /**
+             * Compute online icon.
+             *
+             * @param {boolean} Sign-in/out indicator.
+             * @return {string} Icon name.
+             */
+            computeOnlineIcon: function (online) {
+                return online ? 'cloud' : 'cloud-off';
+            },
+            /**
+             * Fire logout event.
+             */
+            lock: function () {
+                this.$.avatarMenu.close();
+                this.fire('sign-out');
+            }
+        });
+    </script>
+</dom-module>

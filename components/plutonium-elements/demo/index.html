@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+    <head>
+        <title>plutonium-elements demo</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <!--        <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+            <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">-->
+        <link rel="import" href="../../paper-fab/paper-fab.html">
+
+        <link rel="import" href="../../polymerfire/polymerfire.html">
+
+        <link rel="import" href="../plutonium-elements.html">
+
+<!--        <style is="custom-style" include="demo-pages-shared-styles">
+        </style>-->
+    </head>
+    <body>
+
+    <firebase-app
+        name="notes"
+        api-key="AIzaSyDNUiCsu9v9-EaJ177gZF7jXak15t5qv_c"
+        auth-domain="plutonium-app.firebaseapp.com"
+        database-url="https://plutonium-app.firebaseio.com">
+    </firebase-app>
+
+<!--
+    <div class="vertical-section-container centered">
+        <h3>Basic plutonium-elements Demo</h3>
+    </div>
+        <demo-snippet>-->
+            <!--<template>-->
+                <!--<style include="plutonium-shared-styles"></style>-->
+
+                <plutonium-app edited-id="{{editableNoteId}}" online="{{online}}">
+                    <paper-fab
+                        icon="add"
+                        on-tap="create"
+                        disabled="[[!online]]"
+                        aria-label="Add note">
+                    </paper-fab>
+<!--                    <plutonium-editor
+                        id="editor"
+                        note="{{editableNote}}"
+                        on-close="commitChange">
+                    </plutonium-editor>-->
+                    <firebase-document
+                        id="document"
+                        app-name="notes"
+                        path="[[editableNoteId]]"
+                        data="{{editableNote}}">
+                    </firebase-document>
+                    <firebase-query
+                        id="query"
+                        app-name="notes"
+                        path="/notes/[[user.uid]]"
+                        data="{{notes}}">
+                    </firebase-query>
+                    <div class="notes">
+                        <template is="dom-repeat" items="[[persistedNotes]]" as="note">
+                            aaaa
+<!--                            <na-note
+                                id$="[[note.$key]]"
+                                title="[[note.title]]"
+                                body="[[note.body]]"
+                                on-tap="edit">-->
+                        <!--</na-note>-->
+                    </template>
+                </div>
+
+            </plutonium-app>
+        <!--</template>-->
+    <!--</demo-snippet>-->
+<!--</div>-->
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<link rel="import" href="../app-storage/app-network-status-behavior.html">
+<script>
+    'use strict';
+
+    window.Plutonium = window.Plutonium || {};
+
+
+    /**
+     * Behavior for CRUD operations with firebase.
+     *
+     *     <body>
+     *       
+     *       <paper-fab icon="add" on-tap="create" disabled="[[!online]]" aria-label="Add note"></paper-fab>
+     *       
+     *       <na-editor id="editor" note="{{editableNote}}" on-close="commitChange"></na-editor>
+     *       
+     *       <firebase-document id="document" app-name="notes" path="[[editableNoteId]]" data="{{editableNote}}"></firebase-document>
+     *       
+     *       <firebase-query id="query" app-name="notes" path="/notes/[[user.uid]]" data="{{notes}}"></firebase-query>
+     *       
+     *       <app-indexeddb-mirror session="[[user.uid]]" key="notes" data="{{notes}}" persisted-data="{{persistedNotes}}"></app-indexeddb-mirror>
+     *       
+     *       <div class="notes">
+     *          <template is="dom-repeat" items="[[persistedNotes]]" as="note">
+     *              <na-note id$="[[note.$key]]" title="[[note.title]]" body="[[note.body]]" on-tap="edit"></na-note>
+     *          </template>
+     *       </div>
+     *       
+     *     </body>
+     * 
+     * @hero path/to/image
+     * @demo demo/index.html  Secure application demo!
+     * @demo demo/index.html  CRUD operations on firebase demo!
+     * @polymerBehavior
+     */
+    Plutonium.CrudBehaviorImpl = {
+        properties: {
+            editedId: {
+                type: String,
+                notify: true
+            },
+            path: {
+                type: String,
+                notify: true,
+                value: ''
+            }
+        },
+        isEditable: function () {
+            return true;
+        },
+        toEditableId: function (id) {
+            return id;
+        },
+        edit: function (event) {
+            if (this.isEditable) {
+                var element = Polymer.dom(event).localTarget;
+                this.editedId = this.toEditableId(element.id);
+                this.$.document.transactionsComplete.then(function () {
+                    this.$.editor.open(element);
+                });
+            }
+        },
+        create: function () {
+            if (this.isEditable) {
+                this.editedId = null;
+                this.$.editor.open();
+            }
+        },
+        commitChange: function (event) {
+            var changeCommits;
+            switch (event.detail) {
+                case 'save':
+                    changeCommits = this.save();
+                    break;
+                case 'delete':
+                    changeCommits = this.delete();
+                    break;
+                default:
+                    changeCommits = Promise.resolve();
+                    break;
+            }
+
+            if (this.$.query && this.$.query.refresh) {
+                changeCommits.then(function () {
+                    this.$.query.refresh();
+                });
+            }
+        },
+        save: function () {
+            if (this.$.document.isNew && this.editableItem) {
+                return this.$.document.save(this.path).then(function () {
+                    this.$.document.reset();
+                });
+            }
+
+            return Promise.resolve();
+        },
+        delete: function () {
+            if (!this.$.document.isNew) {
+                this.$.document.destroy();
+            }
+
+            return Promise.resolve();
+        }
+    };
+
+
+    /**
+     * Extended behavior for CRUD operations.
+     *
+     * @polymerBehavior Plutonium.CrudBehaviorImpl
+     */
+    Plutonium.CrudBehavior = [
+        Plutonium.CrudBehaviorImpl
+    ];
+</script>

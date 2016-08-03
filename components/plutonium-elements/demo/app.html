@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <title>plutonium-elements demo</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+        <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+        <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+        <link rel="import" href="../../polymerfire/firebase-app.html">
+
+        <link rel="import" href="../plutonium-elements.html">
+
+        <style is="custom-style" include="demo-pages-shared-styles">
+        </style>
+    </head>
+    <body>
+
+    <firebase-app
+        name="notes"
+        api-key="AIzaSyDNUiCsu9v9-EaJ177gZF7jXak15t5qv_c"
+        auth-domain="plutonium-app.firebaseapp.com"
+        database-url="https://plutonium-app.firebaseio.com">
+    </firebase-app>
+
+
+    <div class="vertical-section-container centered">
+        <h3>App demo</h3>
+        <demo-snippet>
+            <template>
+                <style include="plutonium-shared-styles"></style>
+
+                <plutonium-app></plutonium-app>
+            </template>
+        </demo-snippet>
+</div>
+
+</body>
+</html>

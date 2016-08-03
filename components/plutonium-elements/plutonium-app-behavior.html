@@ -1,0 +1,73 @@
+<link rel="import" href="../app-storage/app-network-status-behavior.html">
+<script>
+    'use strict';
+
+    window.Plutonium = window.Plutonium || {};
+    /**
+     * Behavior for securing an application.
+     * 
+     *     <body>
+     *       <style include="plutonium-shared-styles"></style>
+     *
+     *       <firebase-auth id="auth" app-name="notes" provider="google" signed-in="{{signedIn}}" user="{{user}}">
+     *       </firebase-auth>
+     *
+     *       <plutonium-toolbar signed-in="[[signedIn]]" on-sign-out="signOut">
+     *       </plutonium-toolbar>
+     *       
+     *       <plutonium-login on-sign-in="signIn" signed-in="[[signedIn]]" disabled="[[!online]]">
+     *       </plutonium-login>
+     *       
+     *       <div class="notes">
+     *          Application home page.
+     *       </div>
+     *     </body>
+     * 
+     * @hero path/to/image
+     * @demo demo/index.html  Secure application demo!
+     * @demo demo/index.html  CRUD operations on firebase demo!
+     * @polymerBehavior
+     */
+    Plutonium.AppBehaviorImpl = {
+        properties: {
+            user: {
+                type: Object,
+                notify: true
+            },
+            /**
+             * Enable/disable flag
+             */
+            disabled: {
+                type: Boolean,
+                reflectToAttribute: true,
+                value: false
+            },
+            /**
+             * Signed-in indicator.
+             */
+            signedIn: {
+                type: Boolean,
+                reflectToAttribute: true,
+                value: false
+            }
+        },
+        signIn: function () {
+            this.$.auth.signInWithPopup();
+        },
+        signOut: function () {
+            if (this.$.auth) {
+                this.$.auth.signOut();
+            }
+        }
+    };
+
+    /**
+     * Extended behavior for securing an application.
+     *
+     * @polymerBehavior Plutonium.AppBehaviorImpl
+     */
+    Plutonium.AppBehavior = [
+        Polymer.AppNetworkStatusBehavior,
+        Plutonium.AppBehaviorImpl
+    ];
+</script>
