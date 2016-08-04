@@ -338,42 +338,42 @@ Example:
                     }, this)[0]);
             return index;
         },
-        onAddSection: function () {
-            console.log('Add section after field[' + 'section' + this.contentModel.sections.length + ']');
-            this.fire('create', {
-                name: 'section' + this.contentModel.sections.length,
-                type: 'plutonium-cm-editor-text',
-                title: '',
-                data: ''
-            });
-        },
-        onEmbedVideo: function () {
-            console.log('Embed video to after field[' + 'section' + this.contentModel.sections.length + ']');
-            this.fire('create', {
-                name: 'section' + this.contentModel.sections.length,
-                type: 'plutonium-cm-editor-video',
-                title: '',
-                data: ''
-            });
-        },
-        onEmbedImage: function () {
-            console.log('Embed image to after field[' + 'section' + this.contentModel.sections.length + ']');
-            this.fire('create', {
-                name: this.name,
-                type: 'plutonium-cm-editor-image',
-                title: '',
-                data: ''
-            });
-        },
-        onEmbedLink: function () {
-            console.log('Embed link to after field[' + 'section' + this.contentModel.sections.length + ']');
-            this.fire('create', {
-                name: 'section' + this.contentModel.sections.length,
-                type: 'plutonium-cm-editor-link',
-                title: '',
-                data: ''
-            });
-        },
+//        onAddSection: function () {
+//            console.log('Add section after field[' + 'section' + this.contentModel.sections.length + ']');
+//            this.fire('create', {
+//                name: 'section' + this.contentModel.sections.length,
+//                type: 'plutonium-cm-editor-text',
+//                title: '',
+//                data: ''
+//            });
+//        },
+//        onEmbedVideo: function () {
+//            console.log('Embed video to after field[' + 'section' + this.contentModel.sections.length + ']');
+//            this.fire('create', {
+//                name: 'section' + this.contentModel.sections.length,
+//                type: 'plutonium-cm-editor-video',
+//                title: '',
+//                data: ''
+//            });
+//        },
+//        onEmbedImage: function () {
+//            console.log('Embed image to after field[' + 'section' + this.contentModel.sections.length + ']');
+//            this.fire('create', {
+//                name: this.name,
+//                type: 'plutonium-cm-editor-image',
+//                title: '',
+//                data: ''
+//            });
+//        },
+//        onEmbedLink: function () {
+//            console.log('Embed link to after field[' + 'section' + this.contentModel.sections.length + ']');
+//            this.fire('create', {
+//                name: 'section' + this.contentModel.sections.length,
+//                type: 'plutonium-cm-editor-link',
+//                title: '',
+//                data: ''
+//            });
+//        },
 //        onSend: function () {
 //            this.contentModel.leaf = true;
 //            this.fire('share', {
