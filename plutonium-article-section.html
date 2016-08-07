@@ -41,8 +41,12 @@ Example:
                 display: block;
                 box-sizing: border-box;
             }
+            
+            :host paper-card {
+                width: 100%;
+            }
         </style>
-        <paper-card heading="[[contentModel.title]]" hidden="[[!contentModel.leaf]]" class="layout horizontal">
+        <paper-card heading="[[contentModel.title]]" hidden="[[!contentModel.leaf]]">
             <div class="card-content">
                 <template is="dom-repeat" items="{{contentModel.sections}}" as="section">
                     <plutonium-article-field
