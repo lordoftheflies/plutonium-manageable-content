@@ -28,7 +28,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
 <link rel="import" href="../paper-listbox/paper-listbox.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../file-upload/file-upload.html">
 
 <link rel="import" href="../i18n-behavior/i18n-behavior.html">
 
@@ -49,7 +48,7 @@ Example:
       <h2>Hello plutonium-article-form</h2>
     </plutonium-article-form>
 
-@demo demo/index.html
+@demo demo/plutonium-article-form-index.html
 @hero hero.svg
 -->
 
@@ -86,14 +85,14 @@ Example:
             }
         </style>
         <div class="card-content">
-            <div class="layout horizontal">
+<!--            <div class="layout horizontal">
                 <paper-icon-button id="addSectionButton" on-tap="onAddSection" icon="add-circle" title="Embedd text to the message content."></paper-icon-button>
                 <paper-icon-button id="addVideoButton" on-tap="onEmbedVideo" icon="theaters" title="Embedd video to the message content."></paper-icon-button>
                 <paper-icon-button id="addImageButton" on-tap="onEmbedImage" icon="perm-media" title="Embedd image to the message content."></paper-icon-button>
                 <paper-icon-button id="addLinkButton" on-tap="onEmbedLink" icon="link" title="Embedd a link to another message to the message content."></paper-icon-button>
                 <div class="flex"></div>
-                <!--<paper-fab class="end-justified" icon="send" on-tap="onSend" title="Publish content" id="publishContentFab"></paper-fab>-->
-            </div>
+                <paper-fab class="end-justified" icon="send" on-tap="onSend" title="Publish content" id="publishContentFab"></paper-fab>
+            </div>-->
 
             
             <paper-listbox id="assembled" selected="{{selectedSection}}">

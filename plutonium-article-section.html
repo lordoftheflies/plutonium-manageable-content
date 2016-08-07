@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../paper-fab/paper-fab.html">
 <link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-card/paper-card.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-list/iron-list.html">
 
@@ -29,7 +30,7 @@ Example:
       <h2>Hello plutonium-article-section</h2>
     </plutonium-article-section>
 
-@demo demo/index.html
+@demo demo/plutonium-article-section-index.html
 @hero hero.svg
 -->
 
@@ -41,22 +42,18 @@ Example:
                 box-sizing: border-box;
             }
         </style>
-
-        <template is="dom-repeat" items="{{contentModel.sections}}" as="section">
-            QQQQQQQQQQQQQQQQQQ
-            [[section.name]]
-            [[section.title]]
-            [[section.data]]
-            [[section.width]]
-            [[section.height]]
-
-            <plutonium-article-field
-                name="{{section.name}}" 
-                model="{{section}}" 
-                api-url="{{apiUrl}}">
-            </plutonium-article-field>
-            <br />
-        </template>
+        <paper-card heading="[[contentModel.title]]" hidden="[[!contentModel.leaf]]">
+            <div class="card-content">
+                <template is="dom-repeat" items="{{contentModel.sections}}" as="section">
+                    <plutonium-article-field
+                        name="{{section.name}}" 
+                        model="{{section}}" 
+                        api-url="{{apiUrl}}">
+                    </plutonium-article-field>
+                    <br />
+                </template>
+            </div>
+        </paper-card>
     </template>
 
     <script>

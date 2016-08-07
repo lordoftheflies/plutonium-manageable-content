@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <head>
+        <title>plutonium-manageable-content demo</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+        <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+        <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+        <link rel="import" href="../plutonium-manageable-content.html">
+
+        <style is="custom-style" include="demo-pages-shared-styles">
+        </style>
+    </head>
+    <body>
+
+        <div class="vertical-section-container centered">
+            <h3>Basic plutonium-manageable-content Demo</h3>
+            <demo-snippet>
+                <template>
+                    <plutonium-article-form  
+                        class="flex"
+                        api-url="/data"
+                        id="pcf"
+                        editable
+                        contacts="{{contacts}}" 
+                        content-model='{"title":"Cikk a kacsákról", "leaf":true, "draft":false, "id":"ffd2a828-69e7-4a71-abc9-27bea96da809", "sections":[{"title":"Kacsatánc", "name":"d373d027-fc09-452d-863e-b60be8bf4a9d", "type":"plutonium-cm-editor-video", "data":"https://www.youtube.com/watch?v=4KRw9sepREM", "hasEmbeddedFile":false, "justification":null, "fontSize":0, "width":0, "height":0}, {"title":"Így néz ki egy kacsa", "name":"30fa593b-937d-400f-8d9a-16be5fb9bd43", "type":"plutonium-cm-editor-image", "data":"http://www.vicclap.hu/static/media/201002/pic87066.jpg", "hasEmbeddedFile":false, "justification":null, "fontSize":0, "width":0, "height":0}, {"title":"Magyar kacsa", "name":"4b74f89a-8b33-4dac-91fe-25c6d32bf1c3", "type":"plutonium-cm-editor-text", "data":"A 20. század elején a magyar parlagi kacsát már ősi magyar fajtaként említik, de származásáról biztos adataink ma sincsenek. A vízközeli falusi, tanyasi gazdaságok egyik legfontosabb baromfiféléje volt. Míg a gazdaasszony a libát eladásra nevelte, addig a kacsahús a család ellátására szolgált. A tájegységeknek kialakultak a saját típusaik. A leggyakoribb a fehér szín volt, amelyet a 20. század elején a pekingi kacsával akartak nemesíteni. A \"színes\", vagyis a tarka, vadas színű kacsa kisebb rangúnak számított, pedig ez a fajtaváltozat őrizte meg leginkább a magyar kacsa ősi formáját. Állománya erősen lecsökkent, Erdélyben és az alföldi tanyákon találhatóak kisebb állományai. Jelenleg a gödöllői Kisállattenyésztési Kutatóintézetben mindkét változatát tenyésztik. Nagyobb állománya található Szarvason is. 2004 óta a magyar kacsa a védett háziállataink közé tartozik.", "hasEmbeddedFile":false, "justification":null, "fontSize":0, "width":0, "height":0}, {"title":"Mi a kacsa?", "name":"4b2afffa-fbb0-41b0-b44b-76294c803198", "type":"plutonium-cm-editor-text", "data":"A házikacsa vagy röviden kacsa (Anas platyrhynchos domestica) a récefélék családjába tartozó baromfi, a tőkés réce (\"vadkacsa\") alfaja, háziasított változata.", "hasEmbeddedFile":false, "justification":null, "fontSize":0, "width":0, "height":0}], "hasEmbeddedFile":false, "embeddedFileName":null}'>
+                        parent-candidates="{{parentCandidates}}">
+                    </plutonium-article-form>
+                </template>
+            </demo-snippet>
+        </div>
+
+        <script>
+
+        </script>
+    </body>
+</html>
