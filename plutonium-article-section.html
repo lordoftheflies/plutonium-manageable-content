@@ -42,7 +42,7 @@ Example:
                 box-sizing: border-box;
             }
         </style>
-        <paper-card heading="[[contentModel.title]]" hidden="[[!contentModel.leaf]]">
+        <paper-card heading="[[contentModel.title]]" hidden="[[!contentModel.leaf]]" class="layout horizontal">
             <div class="card-content">
                 <template is="dom-repeat" items="{{contentModel.sections}}" as="section">
                     <plutonium-article-field
